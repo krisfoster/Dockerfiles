@@ -65,7 +65,8 @@ ENV USER_NAME=${USER_NAME} \
     MANPATH=/opt/rh/llvm-toolset-7/root/usr/share/man \
     PKG_CONFIG_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64/pkgconfig \
     PYTHONPATH=/opt/rh/llvm-toolset-7/root/usr/lib/python2.7/site-packages \
-    X_SCLS=llvm-toolset-7
+    X_SCLS=llvm-toolset-7 \
+    DISPLAY=host.docker.internal:0
 
 RUN yum update -y oraclelinux-release-el7 \
     && yum install -y oraclelinux-developer-release-el7 oracle-softwarecollection-release-el7 \
