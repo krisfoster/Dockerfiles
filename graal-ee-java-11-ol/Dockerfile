@@ -104,8 +104,8 @@ RUN mkdir -p ${USER_HOME} \
     && echo "source /opt/rh/rh-maven35/enable"  >> ${USER_HOME}/.bashrc \
 #   && echo "source /opt/rh/devtoolset-9/enable"  >> ${USER_HOME}/.zshrc \
 #   && echo "source /opt/rh/devtoolset-9/enable"  >> ${USER_HOME}/.bashrc \
-    && ${GRAALVM_HOME}/languages/ruby/lib/truffle/post_install_hook.sh \
-    && ${GRAALVM_HOME}/bin/gu rebuild-images polyglot libpolyglot js llvm ruby python
+    && ${GRAALVM_HOME}/languages/ruby/lib/truffle/post_install_hook.sh
+#    && ${GRAALVM_HOME}/bin/gu rebuild-images polyglot libpolyglot js llvm ruby python
 
 EXPOSE 8080/tcp \
        3000/tcp \
