@@ -7,6 +7,8 @@
 ###############################################################################################
 FROM oraclelinux:7-slim as intermediate
 
+MAINTAINER krisfoster <me@krismade.me>
+
 ARG GRAAL_VERSION="20.2.0"
 ARG JAVA_VERSION="11"
 ARG USER_NAME="vscode"

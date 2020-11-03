@@ -1,5 +1,7 @@
 FROM ubuntu:devel
 
+MAINTAINER krisfoster <me@krismade.me>
+
 ARG GRAAL_VERSION="20.2.0"
 ARG JAVA_VERSION="11"
 ARG USER_NAME="vscode"
