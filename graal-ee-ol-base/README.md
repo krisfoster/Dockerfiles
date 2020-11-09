@@ -27,6 +27,16 @@ To build, for example, GraalVM EE using JDK 11:
 make GRAAL_VER=22.2.0 JAVA_VER=11
 ```
 
+## Pushing to DockerHub
+
+The repository that you push the built images to can be configured through the
+`REPO` parameter. This is set in the `Dockerfile` to my repo name, but can be also set on the
+command line.
+
+```
+make GRAAL_VER=22.2.0 JAVA_VER=11 REPO=you-repo-name
+make push
+```
 
 ## Running the Container
 
