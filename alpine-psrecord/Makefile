@@ -2,16 +2,16 @@
 
 VER=0.1
 current_dir = $$PWD
-image_name = "alpine-psrecord"
+image_name = "krisfoster/alpine-psrecord"
 
 build:
-	docker build --build-arg --rm --squash --no-cache -t krisfoster/$(image_name):$(VER) . 
+	docker build --build-arg --force-rm --compress --squash --no-cache -t $(image_name):$(VER) .
 
 run:
-	docker run --rm -it -P krisfoster/$(image_name):$(VER) /bin/sh
+	docker run --rm -it -P $(image_name):$(VER) /bin/sh
 
 push:
 	docker login
-	docker push krisfoster/$(image_name):$(VER)
+	docker push $(image_name):$(VER)
 
 clean:

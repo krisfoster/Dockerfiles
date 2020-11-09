@@ -1,12 +1,21 @@
 FROM alpine:latest
-MAINTAINER krisfoster <me@krismade.me>
 
-# Alpine image with psrecord installed, for profiling mem / cpu usage
-# Use as a base build for apps that we want to profile
+ENV GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc \
+    GLIBC_VERSION=2.32-r0 \
+    LANG=C.UTF-8
 
+RUN apk -U upgrade \
+        && apk add libstdc++ bash curl \
+        && for pkg in glibc-${GLIBC_VERSION} glibc-bin-${GLIBC_VERSION} glibc-i18n-${GLIBC_VERSION}; \
+            do curl -sSL ${GLIBC_REPO}/releases/download/${GLIBC_VERSION}/${pkg}.apk -o /tmp/${pkg}.apk; \
+            done \
+        && apk add --allow-untrusted /tmp/*.apk \
+        && rm -v /tmp/*.apk \
+        && echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh  \
+        && /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib
+
+# Install psrecord
 RUN apk add --update alpine-sdk openssl-dev build-base
-
-# Install python/pip
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip
@@ -15,3 +24,4 @@ RUN apk add --update --no-cache py3-psutil
 RUN rm -rf /var/cache/apk/*
 RUN pip install --upgrade pip
 RUN pip install psrecord
+
