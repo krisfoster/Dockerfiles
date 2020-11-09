@@ -1,5 +1,6 @@
 .PHONY: build
 
+REPO="krisfoster"
 GRAAL_VER = "20.2.0"
 JAVA_VER = "11"
 current_dir = $$PWD
@@ -17,7 +18,7 @@ build: copy-install-files
 		--compress \
 		--pull \
 		-f Dockerfile \
-		-t krisfoster/$(IMG_NAME) .
+		-t $(REPO)/$(IMG_NAME) .
 	rm -rf ./installs
 
 copy-install-files:
@@ -25,12 +26,11 @@ copy-install-files:
 	cp ../installs/* ./installs
 
 run:
-	docker run --rm -it -P krisfoster/$(IMG_NAME) /bin/bash
+	docker run --rm -it -P $(REPO)/$(IMG_NAME) /bin/bash
 
 push:
 	docker login
-	docker push krisfoster/$(IMG_NAME)
+	docker push $(REPO)/$(IMG_NAME)
 
 clean:
 	rm -rf ./installs
-	#docker image rm krisfoster/$(image_name):$(graal_ver)
