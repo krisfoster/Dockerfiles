@@ -13,7 +13,6 @@ build: copy-install-files
 		--build-arg GRAAL_VERSION=$(GRAAL_VER) \
 		--build-arg JAVA_VERSION=$(JAVA_VER) \
 		--force-rm \
-		--squash \
 		--no-cache \
 		--compress \
 		--pull \
