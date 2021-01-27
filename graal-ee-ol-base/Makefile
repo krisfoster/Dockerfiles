@@ -1,7 +1,7 @@
 .PHONY: build
 
 REPO := "krisfoster"
-GRAAL_VER := "20.2.0"
+GRAAL_VER := "21.0.0"
 JAVA_VER := "11"
 IMG_NAME_BASE := "graal-ee-ol-base"
 
@@ -15,9 +15,6 @@ build: copy-install-files
 	docker build \
 		--build-arg GRAAL_VERSION=$(GRAAL_VER) \
 		--build-arg JAVA_VERSION=$(JAVA_VER) \
-		--force-rm \
-		--no-cache \
-		--squash \
 		--compress \
 		--pull \
 		-f Dockerfile \
